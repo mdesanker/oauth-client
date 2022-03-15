@@ -1,11 +1,13 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Register from "./components/views/Register";
 
 function App() {
   return (
-    <div>
-      <h1>Hello, world!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Register />} />
+    </Routes>
   );
 }
 
