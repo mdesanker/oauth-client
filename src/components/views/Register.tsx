@@ -1,14 +1,16 @@
-import { FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaUser, FaGoogle, FaFacebookF, FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiFillLock } from "react-icons/ai";
 
 const Register = () => {
   return (
-    <div className="w-full h-screen p-4">
-      Register
+    <div className="w-full h-screen flex flex-col justify-center p-4 max-w-[364px] sm:w-auto sm:h-auto sm:border border-gray-300 rounded-lg sm:p-8">
+      <h1 className="font-semibold text-2xl mb-1">Register.</h1>
+      <p className="text-gray-500 mb-4">Register a new account.</p>
       <form className="flex flex-col">
         <label htmlFor="username" className="auth-label">
-          <FaUser className="w-6 h-6" />
+          <FaUser className="text-lg" />
           <input
             type="text"
             id="username"
@@ -18,7 +20,7 @@ const Register = () => {
           />
         </label>
         <label htmlFor="email" className="auth-label">
-          <MdEmail className="w-6 h-6" />
+          <MdEmail className="text-lg" />
           <input
             type="email"
             id="email"
@@ -28,7 +30,7 @@ const Register = () => {
           />
         </label>
         <label htmlFor="password" className="auth-label">
-          <AiFillLock className="w-6 h-6" />
+          <AiFillLock className="text-lg" />
           <input
             type="password"
             id="password"
@@ -41,8 +43,24 @@ const Register = () => {
           Register
         </button>
       </form>
-      <p>Or login with</p>
-      <div></div>
+      <p className="text-center py-3 mt-3">Or register with</p>
+      <div className="flex justify-center gap-6">
+        <button className="oauth-btn">
+          <FaGoogle />
+        </button>
+        <button className="oauth-btn">
+          <FaFacebookF />
+        </button>
+        <button className="oauth-btn">
+          <FaGithub />
+        </button>
+      </div>
+      <p className="text-center py-6">
+        Already a member?{" "}
+        <Link to="#" className="text-blue-500 hover:underline">
+          Login
+        </Link>
+      </p>
     </div>
   );
 };
