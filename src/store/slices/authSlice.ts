@@ -20,6 +20,18 @@ export const loadUser = createAsyncThunk<IUser>(
   }
 );
 
+export const logoutUser = createAsyncThunk(
+  "user/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.post("/auth/logout");
+      return;
+    } catch (err: any) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export interface IUser {
   _id: string;
   googleId?: string;
@@ -57,9 +69,13 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
     });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+    });
   },
 });
 
-// export const {} = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
