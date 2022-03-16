@@ -2,13 +2,33 @@ import { Link } from "react-router-dom";
 import { FaUser, FaGoogle, FaFacebookF, FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiFillLock } from "react-icons/ai";
+import React, { useState } from "react";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
+  const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <div className="w-full h-screen flex flex-col justify-center p-4 max-w-[364px] sm:w-auto sm:h-auto sm:border border-gray-300 rounded-lg sm:p-8">
       <h1 className="font-semibold text-2xl mb-1">Register.</h1>
       <p className="text-gray-500 mb-4">Register a new account.</p>
-      <form className="flex flex-col">
+      <form className="flex flex-col" onSubmit={submitHandler}>
         <label htmlFor="username" className="auth-label">
           <FaUser className="text-lg" />
           <input
@@ -16,6 +36,7 @@ const Register = () => {
             id="username"
             name="username"
             placeholder="Username"
+            onChange={inputHandler}
             className="outline-none text-black"
           />
         </label>
@@ -26,6 +47,7 @@ const Register = () => {
             id="email"
             name="email"
             placeholder="Email"
+            onChange={inputHandler}
             className="outline-none text-black"
           />
         </label>
@@ -36,6 +58,7 @@ const Register = () => {
             id="password"
             name="password"
             placeholder="Password"
+            onChange={inputHandler}
             className="outline-none text-black"
           />
         </label>
