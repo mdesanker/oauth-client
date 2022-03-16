@@ -1,13 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiFillLock } from "react-icons/ai";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleBtn from "./elements/GoogleBtn";
 import FacebookBtn from "./elements/FacebookBtn";
 import GithubBtn from "./elements/GithubBtn";
+import { useAppSelector } from "../../../store/hooks";
+import { RootState } from "../../../store/store";
 
 const Register = () => {
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -26,6 +31,12 @@ const Register = () => {
     e.preventDefault();
     console.log(formData);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="w-full h-screen flex flex-col justify-center p-4 max-w-[364px] sm:w-auto sm:h-auto sm:border border-gray-300 rounded-lg sm:p-8">
