@@ -2,7 +2,7 @@ import { FaGoogle } from "react-icons/fa";
 
 const GoogleBtn = () => {
   const clickHandler = () => {
-    console.log("Google login");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   return (
