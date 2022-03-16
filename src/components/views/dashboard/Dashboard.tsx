@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
 import { DateTime } from "luxon";
+import Logout from "./elements/Logout";
 
 const Dashboard = () => {
   const { user } = useAppSelector((state: RootState) => state.auth);
@@ -23,6 +24,7 @@ const Dashboard = () => {
       </h1>
       <p>Email: {user?.email}</p>
       <p>Member since: {formattedDate}</p>
+      <Logout />
     </div>
   );
 };
