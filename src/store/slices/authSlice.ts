@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { DateTime } from "luxon";
 
-export const loadUser = createAsyncThunk(
+export const loadUser = createAsyncThunk<IUser>(
   "user/load",
   async (_, { rejectWithValue }) => {
     try {
@@ -20,7 +21,21 @@ export const loadUser = createAsyncThunk(
   }
 );
 
-const initialState = {
+export interface IUser {
+  _id: string;
+  googleId?: string;
+  username: string;
+  email: string;
+  avatar?: string;
+  date: DateTime;
+}
+
+interface IAuthState {
+  user: IUser | null;
+  isAuthenticated: boolean;
+}
+
+const initialState: IAuthState = {
   user: null,
   isAuthenticated: false,
 };
