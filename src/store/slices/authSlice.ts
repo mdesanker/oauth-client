@@ -11,8 +11,7 @@ export const loadUser = createAsyncThunk<IUser>(
       });
 
       if (res.status === 200) {
-        console.log(res.data.user);
-
+        // console.log(res.data.user);
         return res.data.user;
       }
     } catch (err: any) {

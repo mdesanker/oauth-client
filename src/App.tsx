@@ -7,6 +7,7 @@ import Register from "./components/views/auth/Register";
 import Dashboard from "./components/views/dashboard/Dashboard";
 import { useAppDispatch } from "./store/hooks";
 import { loadUser } from "./store/slices/authSlice";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 axios.defaults.baseURL = "http://localhost:5000";
 
@@ -21,7 +22,14 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
