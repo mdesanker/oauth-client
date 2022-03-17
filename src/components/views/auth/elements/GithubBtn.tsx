@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 
 const GithubBtn = () => {
   const clickHandler = () => {
-    console.log("Github login");
+    window.open("http://localhost:5000/auth/github", "_self");
   };
 
   return (
