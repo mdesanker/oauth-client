@@ -2,7 +2,7 @@ import { FaFacebookF } from "react-icons/fa";
 
 const FacebookBtn = () => {
   const clickHandler = () => {
-    console.log("Facebook login");
+    window.open("http://localhost:5000/auth/facebook", "_self");
   };
 
   return (
