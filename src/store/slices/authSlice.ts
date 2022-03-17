@@ -24,6 +24,27 @@ export const register = createAsyncThunk<any, any>(
   }
 );
 
+export const login = createAsyncThunk<any, any>(
+  "user/login",
+  async (user, { dispatch, rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(user);
+
+    try {
+      const res = await axios.post("/auth/login", body, config);
+
+      return res.data.user;
+    } catch (err: any) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const loadUser = createAsyncThunk<IUser>(
   "user/load",
   async (_, { rejectWithValue }) => {
@@ -83,6 +104,10 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(login.fulfilled, (state, { payload }) => {
+      state.user = payload;
+      state.isAuthenticated = true;
+    });
     builder.addCase(loadUser.fulfilled, (state, { payload }) => {
       state.user = payload;
       state.isAuthenticated = true;

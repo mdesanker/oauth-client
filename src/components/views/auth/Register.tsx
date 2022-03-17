@@ -31,7 +31,6 @@ const Register = () => {
 
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(register(formData));
   };
 
