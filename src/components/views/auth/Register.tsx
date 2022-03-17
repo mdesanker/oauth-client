@@ -6,10 +6,12 @@ import React, { useEffect, useState } from "react";
 import GoogleBtn from "./elements/GoogleBtn";
 import FacebookBtn from "./elements/FacebookBtn";
 import GithubBtn from "./elements/GithubBtn";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
+import { register } from "../../../store/slices/authSlice";
 
 const Register = () => {
+  const dispatch = useAppDispatch();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ const Register = () => {
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
+    dispatch(register(formData));
   };
 
   useEffect(() => {

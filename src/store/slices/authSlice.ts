@@ -2,6 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { DateTime } from "luxon";
 
+export const register = createAsyncThunk<any, any>(
+  "user/register",
+  async (user, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(user);
+
+    try {
+      const res = await axios.post("/auth/register", body, config);
+
+      console.log(res.data);
+      return res.data;
+    } catch (err: any) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const loadUser = createAsyncThunk<IUser>(
   "user/load",
   async (_, { rejectWithValue }) => {
