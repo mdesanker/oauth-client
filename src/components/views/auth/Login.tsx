@@ -67,7 +67,7 @@ const Login = () => {
           />
         </label>
         <button className="p-2 bg-blue-500 text-white rounded my-2 font-medium hover:bg-blue-600">
-          Register
+          Login
         </button>
       </form>
       <p className="text-center py-3 mt-3">Or login with</p>

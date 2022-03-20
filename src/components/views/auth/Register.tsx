@@ -32,6 +32,7 @@ const Register = () => {
   const submitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(register(formData));
+    navigate("/");
   };
 
   useEffect(() => {
